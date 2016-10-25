@@ -24,13 +24,16 @@
 		<p:panelMenu>
        		<p:submenu label="Filtros por Tipo">
        			<p:menuitem value = "Todos"/>
-				<p:menuitem value = "Residêncial"/>
-				<p:menuitem value = "Comercial"/>
-				<p:menuitem value = "Industrial"/>
+				<p:menuitem value = "Residêncial"	outcome="/pages/Residencia.xhtml"/>
+				<p:menuitem value = "Comercial"		outcome="/pages/Comercio.xhtml"/>
+				<p:menuitem value = "Industrial"	outcome="/pages/Industria.xhtml"/>
        	    </p:submenu>
 			<p:submenu label="Inserção">
-				<p:menuitem value = "Cliente"/>
-				<p:menuitem value = "Fraude"/>
+				<p:menuitem value = "Cliente"	outcome="/pages/inserirConsumidor.xhtml"/>
+				<p:menuitem value = "Fraude"	outcome="/pages/inserirFraude.xhtml"/>
+			</p:submenu>
+			<p:submenu label="Dados">
+				<p:menuitem value = "Cliente"	outcome="/pages/tabelaDados.xhtml"/>
 			</p:submenu>
 		</p:panelMenu>
 	</h:form>
