@@ -10,7 +10,7 @@
 		<ui:define name="conteudo">
 			<h:form>
    	 			<p:growl id="growl" showDetail="true" />
-			    <p:gmap id="gmap" center="-28.952962, -49.471081" zoom="13" type="HYBRID" model="#{marcaComercio.simpleModel}"  style="width:100%;height:400px">
+			    <p:gmap id="gmap" center="-28.952962, -49.471081" zoom="13" type="HYBRID" model="#{markersView.simpleModel}"  style="width:100%;height:400px">
         			<p:ajax event="overlaySelect" listener="#{mapaBean.onMarkerSelect}" update="growl" />
     			</p:gmap>
 			</h:form>

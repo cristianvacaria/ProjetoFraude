@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -54,6 +55,7 @@ public class MapaBean implements Serializable {
 
 	public void onMarkerSelect(OverlaySelectEvent event) {
 		marker = (Marker) event.getOverlay();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
 	}
 
 	public Marker getMarker() {

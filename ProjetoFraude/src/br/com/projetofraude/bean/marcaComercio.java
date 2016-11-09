@@ -20,20 +20,24 @@ import br.com.projetofraude.model.Consumidor;
 
 @ManagedBean
 @ViewScoped
-public class MarkersView implements Serializable {
+public class marcaComercio implements Serializable {
    
 	private static final long serialVersionUID = 1L;
 	private MapModel simpleModel;
 	
 	private Marker marker;
+	private String busca;
     @PostConstruct
     public void init() {
     	simpleModel = new DefaultMapModel();
     	ConsumidorDao dao = new ConsumidorDao();
     	List<Consumidor> consumidores = dao.getListaConsumidores();
         for(Consumidor consumidor : consumidores){
-	    	LatLng coord1 = new LatLng(consumidor.getLatitude(), consumidor.getLongitude());
-		    simpleModel.addOverlay(new Marker(coord1, consumidor.getDescricao()));
+        	busca = consumidor.getTipo().toString();
+        	if (busca == "COMERCIAL" ){
+	    		LatLng coord1 = new LatLng(consumidor.getLatitude(), consumidor.getLongitude());
+		        simpleModel.addOverlay(new Marker(coord1, consumidor.getDescricao()));
+        	}
         }
     }
   
@@ -45,10 +49,7 @@ public class MarkersView implements Serializable {
         marker = (Marker) event.getOverlay();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
     }
-    
- 
-
-    
+   
     public Marker getMarker() {
         return marker;
     }
