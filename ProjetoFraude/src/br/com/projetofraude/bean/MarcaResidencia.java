@@ -23,14 +23,14 @@ import br.com.projetofraude.dao.ConsumidorDao;
 
 @ManagedBean
 @ViewScoped
-public class MapaBean implements Serializable {
+public class MarcaResidencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private MapModel simpleModel;
 	private ConsumidorDao consumidorDao = new ConsumidorDao();
 	private Marker marker;
 
-	public MapaBean() {
+	public MarcaResidencia() {
 	}
 	
 	@PostConstruct
@@ -66,14 +66,15 @@ public class MapaBean implements Serializable {
 			} else {
 				s = "faces/imagens/green-dot.png";
 			}
-			
-			m = new Marker(coord);
-			m.setTitle(lista.get(i).getDescricao());
-			m.setData(lista.get(i));
-			m.setIcon(s);	
-			//m.setId( lista.get(i).getId().toString() );
-			
-			simpleModel.addOverlay(m);	
+			if(lista.get(i).getTipo().toString().equals("RESIDENCIAL")){
+				m = new Marker(coord);
+				m.setTitle(lista.get(i).getDescricao());
+				m.setData(lista.get(i));
+				//m.setIcon(s);	
+				//m.setId( lista.get(i).getId().toString() );
+				
+				simpleModel.addOverlay(m);
+			}
 		}
 	}
 

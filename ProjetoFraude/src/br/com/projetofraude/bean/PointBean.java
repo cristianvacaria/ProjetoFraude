@@ -1,4 +1,3 @@
-
 package br.com.projetofraude.bean;
 
 import br.com.projetofraude.dao.ConsumidorDao;
@@ -12,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.model.map.*;
 
  
@@ -20,11 +20,7 @@ import org.primefaces.model.map.*;
 public class PointBean implements Serializable{
 
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private MapModel emptyModel;
+    private MapModel emptyModel;
     private Marker currentMarker;
     private ConsumidorDao dao;
     private Consumidor consumidor;

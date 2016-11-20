@@ -33,7 +33,7 @@ public class MarkersView implements Serializable {
     	List<Consumidor> consumidores = dao.getListaConsumidores();
         for(Consumidor consumidor : consumidores){
 	    	LatLng coord1 = new LatLng(consumidor.getLatitude(), consumidor.getLongitude());
-		    simpleModel.addOverlay(new Marker(coord1, consumidor.getDescricao()));
+		    simpleModel.addOverlay(new Marker(coord1,consumidor.getDescricao()));
         }
     }
   
@@ -43,7 +43,9 @@ public class MarkersView implements Serializable {
       
     public void onMarkerSelect(OverlaySelectEvent event) {
         marker = (Marker) event.getOverlay();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
+        String marcas;
+        marcas = marker.getTitle().toString();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marcas));
     }
     
  

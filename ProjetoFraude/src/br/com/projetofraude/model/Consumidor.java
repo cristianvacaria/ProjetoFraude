@@ -1,7 +1,6 @@
 package br.com.projetofraude.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-
-import br.com.projetofraude.util.HibernateUtil;
 
 
 @Entity
 @Table(name = "consumidor")
-@NamedQueries({@NamedQuery(name = "Consumidor.listar", query = "SELECT consumidor FROM Consumidor consumidor")})
 public class Consumidor implements Serializable{
     
 	private static final long serialVersionUID = 1L;
@@ -135,20 +126,15 @@ public class Consumidor implements Serializable{
 		this.tipo = null;
 
     }
-	
-	@SuppressWarnings("unchecked")
-	public List<Consumidor> listar(){
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		List<Consumidor> consumidor = null;
-		try{
-			Query consulta = sessao.getNamedQuery("Consumidor.listar");
-			consumidor = consulta.list();
-		}catch (Exception ex) {
-			throw ex;
-		}finally{
-			sessao.close();
-		}
-		return consumidor;
-	}
 
+
+	@Override
+	public String toString() {
+		return " ID = " + id +
+				"\n Descricao = " + descricao +
+				"\n Tipo = " + tipo +
+				"\n Endereco = " + endereco + 
+				"\n suspeitaFraude = " + suspeitaFraude;
+	}
+	
 }
