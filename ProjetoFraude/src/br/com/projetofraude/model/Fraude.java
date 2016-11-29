@@ -4,19 +4,20 @@ package br.com.projetofraude.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "fraude")
 public class Fraude implements Serializable{
 	
-	private static final long serialVersionUID = -8451678989006050647L;
-	
-	/*
-	public enum EstadoFraude{
-		SUSPEITA,CONFIRMADO,DESCARTADO,FINALIZADO
-	}
-	*/
+	private static final long serialVersionUID = 1L;
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,8 +31,6 @@ public class Fraude implements Serializable{
 	private String tipo;
 	
 	@Column(length = 20)
-	//@Enumerated(EnumType.STRING)
-	//private EstadoFraude status;
 	private String status;
 	
 	@Column
@@ -91,6 +90,15 @@ public class Fraude implements Serializable{
 		this.tipo = "";
 		this.status = "";
 		this.data_deteccao = null;
+	}
+	
+	@Override
+	public String toString() {
+		return " ID = " + id_fraude +
+				"\n ID Consumidor = " + id_consumidor +
+				"\n Tipo = " + tipo +
+				"\n Status = " + status + 
+				"\n Data = " + data_deteccao;
 	}
 
 

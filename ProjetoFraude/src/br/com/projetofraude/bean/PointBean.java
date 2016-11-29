@@ -11,7 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.map.MarkerDragEvent;
+//import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.model.map.*;
 
  
@@ -20,7 +20,11 @@ import org.primefaces.model.map.*;
 public class PointBean implements Serializable{
 
 
-    private MapModel emptyModel;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MapModel emptyModel;
     private Marker currentMarker;
     private ConsumidorDao dao;
     private Consumidor consumidor;
@@ -109,7 +113,6 @@ public class PointBean implements Serializable{
     }
 
     
-    @SuppressWarnings("unchecked")
     public List<Consumidor>getAllConsumidor(){
         return dao.getListaConsumidores();
     }

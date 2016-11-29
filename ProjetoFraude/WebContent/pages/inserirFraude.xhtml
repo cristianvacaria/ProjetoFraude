@@ -30,14 +30,8 @@
                     Id Consumidor:  <p:inputText id="idCons" 	value="#{fraudeBean.fraude.id_consumidor}" />
                     Tipo:  			<p:inputText id="tipo" 		value="#{fraudeBean.fraude.tipo}"/>
                     Status:  		<p:inputText id="status" 	value="#{fraudeBean.fraude.status}"/>
-                    Data detecÃ§Ã£o:	<p:calendar  id="data" 		value="#{fraudeBean.fraude.data_deteccao}" locale="pt" navigator="true" pattern="yyyy-MM-dd" />
-                   <!--  
-                    <h:inputText id="data" 		value="#{fraudeBean.fraude.data_deteccao}">
-				
-                    					<f:convertDateTime pattern="dd-MM-yyyy"/>
-                    					<p:outputLabel for="button" value="Button:" />			
-                    				</h:inputText >
-                    -->
+                    Data detecção:	<p:calendar  id="data" 		value="#{fraudeBean.fraude.data_deteccao}" locale="pt" navigator="true" pattern="yyyy-MM-dd" />
+                  
                     <h:inputHidden/>
                     <h:commandButton value="Cadastrar" action="#{fraudeBean.adicionarFraude}"/>        
 
@@ -62,7 +56,7 @@
                     
                      <h:column headerText="data">
                         <f:facet name="header">
-                            DATA DETECÃ‡ÃƒO
+                            DATA DETECÇÃO
                         </f:facet>
                         <h:outputText value="#{dados.data_deteccao}"/>
                     </h:column>

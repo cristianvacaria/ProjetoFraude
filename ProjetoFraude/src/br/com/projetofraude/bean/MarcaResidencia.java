@@ -43,11 +43,6 @@ public class MarcaResidencia implements Serializable {
 		marker = (Marker) event.getOverlay();
 	}
 
-	public void info() throws IOException {
-		Consumidor c = (Consumidor) marker.getData();
-		String id = c.getId().toString();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("pages/tabelaDados.jsf?id=" + id);
-	}
 	
 	public void insereMarcadores() {
 		List<Consumidor> lista = new ArrayList<Consumidor>();
@@ -62,15 +57,15 @@ public class MarcaResidencia implements Serializable {
 			coord = new LatLng(lista.get(i).getLatitude(), lista.get(i).getLongitude());
 
 			if (lista.get(i).isSuspeitaFraude()) {
-				s = "faces/imagens/red-dot.png";
+				s = "../imagens/red-dot.png";
 			} else {
-				s = "faces/imagens/green-dot.png";
+				s = "../imagens/green-dot.png";
 			}
 			if(lista.get(i).getTipo().toString().equals("RESIDENCIAL")){
 				m = new Marker(coord);
 				m.setTitle(lista.get(i).getDescricao());
 				m.setData(lista.get(i));
-				//m.setIcon(s);	
+				m.setIcon(s);	
 				//m.setId( lista.get(i).getId().toString() );
 				
 				simpleModel.addOverlay(m);
@@ -78,12 +73,22 @@ public class MarcaResidencia implements Serializable {
 		}
 	}
 
-	public MapModel getSimpleModel() {
-		return simpleModel;
-	}	
-
-	public Marker getMarker() {
-		return marker;
+	public void info() throws IOException {
+		
+		Consumidor c = (Consumidor) marker.getData();
+		
+		String id = c.getId().toString();
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/Projeto/pages/tabelaDados.jsf?id=" + id);
 	}
+	
+    public MapModel getSimpleModel() {
+        return simpleModel;
+    }
+    
+    public Marker getMarker() {
+        return marker;
+    }
+
 	
 }

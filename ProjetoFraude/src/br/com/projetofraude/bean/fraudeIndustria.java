@@ -2,7 +2,6 @@ package br.com.projetofraude.bean;
 
 import br.com.projetofraude.model.*;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,9 +9,6 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -20,17 +16,19 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 import br.com.projetofraude.dao.ConsumidorDao;
+import br.com.projetofraude.dao.FraudeDao;
 
 @ManagedBean
 @ViewScoped
-public class MarcaComercio implements Serializable {
+public class fraudeIndustria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private MapModel simpleModel;
+	private FraudeDao fraudeDao = new FraudeDao();
 	private ConsumidorDao consumidorDao = new ConsumidorDao();
 	private Marker marker;
 
-	public MarcaComercio() {
+	public fraudeIndustria() {
 	}
 	
 	@PostConstruct
@@ -42,44 +40,41 @@ public class MarcaComercio implements Serializable {
 	public void onMarkerSelect(OverlaySelectEvent event) {
 		marker = (Marker) event.getOverlay();
 	}
-
+	
 	public void insereMarcadores() {
-		List<Consumidor> lista = new ArrayList<Consumidor>();
-		lista = consumidorDao.getListaConsumidores();
+		List<Fraude> lista = new ArrayList<Fraude>();
+		List<Consumidor> list = new ArrayList<Consumidor>();
+		lista = fraudeDao.getListaFraudes();
+		list = consumidorDao.getListaConsumidores();
 
-		int i;
-		LatLng coord;
+		int i, j, set = 0;
+		LatLng coord = null;
 		String s;
-		Marker m;
+		Marker m = null;
+		Integer id_consumidor;
+		String desc = null;
 		
 		for (i = 0; i < lista.size(); i++) {
-			coord = new LatLng(lista.get(i).getLatitude(), lista.get(i).getLongitude());
-
-			if (lista.get(i).isSuspeitaFraude()) {
-				s = "../imagens/red-dot.png";
-			} else {
-				s = "../imagens/green-dot.png";
+			id_consumidor = lista.get(i).getId_consumidor();
+			for (j = 0; j < list.size(); j++) {
+				if(id_consumidor == list.get(j).getId() ){
+					coord = new LatLng(list.get(j).getLatitude(), list.get(j).getLongitude());
+					desc = list.get(j).getDescricao();
+					set = j;
+				}
 			}
-			if(lista.get(i).getTipo().toString().equals("COMERCIAL")){
+			if(list.get(set).getTipo().toString().equals("INDUSTRIAL")){
 				m = new Marker(coord);
-				m.setTitle(lista.get(i).getDescricao());
+				m.setTitle(desc);
 				m.setData(lista.get(i));
-				m.setIcon(s);	
-				//m.setId( lista.get(i).getId().toString() );
-				
+				s = "../imagens/red-dot.png";
+				m.setIcon(s);
 				simpleModel.addOverlay(m);
 			}
 		}
+		
 	}
 
-	public void info() throws IOException {
-		
-		Consumidor c = (Consumidor) marker.getData();
-		
-		String id = c.getId().toString();
-		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/Projeto/pages/tabelaDados.jsf?id=" + id);
-	}
 	
     public MapModel getSimpleModel() {
         return simpleModel;
@@ -88,5 +83,5 @@ public class MarcaComercio implements Serializable {
     public Marker getMarker() {
         return marker;
     }
-
+	
 }
