@@ -57,9 +57,9 @@ public class MarcaResidencia implements Serializable {
 			coord = new LatLng(lista.get(i).getLatitude(), lista.get(i).getLongitude());
 
 			if (lista.get(i).isSuspeitaFraude()) {
-				s = "../imagens/red-dot.png";
+				s = "../imagens/residencial-red.png";
 			} else {
-				s = "../imagens/green-dot.png";
+				s = "../imagens/residencial-green.png";
 			}
 			if(lista.get(i).getTipo().toString().equals("RESIDENCIAL")){
 				m = new Marker(coord);
@@ -79,7 +79,7 @@ public class MarcaResidencia implements Serializable {
 		
 		String id = c.getId().toString();
 		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/Projeto/pages/tabelaDados.jsf?id=" + id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/ProjetoFraude/pages/tabelaDados.jsf?id=" + id);
 	}
 	
     public MapModel getSimpleModel() {

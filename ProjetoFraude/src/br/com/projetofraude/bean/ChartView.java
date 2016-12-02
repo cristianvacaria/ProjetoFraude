@@ -44,9 +44,7 @@ public class ChartView implements Serializable {
     private Grafico graficoMensal;
 	private Grafico graficoSemanal;
 	
-    private List<DadosConsumo> lista;
-    private DadosConsumo temp = new DadosConsumo();
-    private DadosConsumoDao dadosDao = new DadosConsumoDao();
+
     private Consumidor consumidor;
     private ConsumidorDao consumidorDao = new ConsumidorDao();
     private Integer id;
@@ -55,9 +53,9 @@ public class ChartView implements Serializable {
     private Date dataFim;
     private Date semana, dia, mes, dia_aux, semana_aux, mes_aux;
     
-    private String labelDia, labelSemana, labelMes, labelIntevalo;
+    private String labelDia, labelSemana, labelMes;
     
-    private Calendar cInicio, cFim;
+
     
     @PostConstruct
     public void init() { 	
