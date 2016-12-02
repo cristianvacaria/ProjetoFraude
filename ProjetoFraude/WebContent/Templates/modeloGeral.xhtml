@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-Qvm6e7M-vka6BAPlX-WkRnisuNohyiY" />
 	<title>Fraude</title>
 </h:head>
-<h:body>
+
+<h:body style="background-color:#ffffff">
+
+
 	<p:layout fullPage="true">
 	
-	<p:layoutUnit position="north" header="Sistema de detecção de fraude elétrica"
-	 resizable="false" closable="false" collapsible="false" >  
+	
+	<p:layoutUnit position="north" size="100" style="border:none"  >
+		<h:graphicImage url="/imagens/fraude.jpg"  width="1358" height="74" />
     </p:layoutUnit> 
     
-   	<p:layoutUnit position="west" header="Menu" resizable="false" size = "250"
-							closable="false" collapsible="false">  
-	<h:form>  	          
-		<p:panelMenu>
+
+	    
+   	<p:layoutUnit position="west" header="Menu"   size = "250" 														
+							style="width:200px; height:100%; background-color:#ffffff; border:none ">
+							 
+	<h:form >  	          
+		<p:panelMenu >
        		<p:submenu label="Consumidores">
        			<p:menuitem value = "Todos"			outcome="/pages/Todos.xhtml"/>
 				<p:menuitem value = "Residêncial"	outcome="/pages/Residencia.xhtml"/>
@@ -48,19 +55,17 @@
 	</h:form>
 	</p:layoutUnit>	
 	
-	<p:layoutUnit position="center" header="Sistema" footer="Detecção de Fraude" 
-	style="font-size: 13px; font-family: Verdana"
-	resizable="false" closable="false" collapsible="false">
+	<p:layoutUnit position="center" style="background-color:#ffffff; border:none" >
 		<ui:insert name="conteudo"/>
 	</p:layoutUnit>			
 
 	
-	<p:layoutUnit header="Desenvolvido por Sistemas Ubíquos - UFSC - 2016.2" position = "south"
-	resizable="false" closable="false" collapsible="false">
+	<p:layoutUnit position = "south" size="100" style="background-color:#ffffff; border:none">
+	<h:graphicImage url="/imagens/rodape.jpg" width="1358" height="74" />
 	</p:layoutUnit>
 	
 	
-	
+
 	</p:layout>
 	
 </h:body>
