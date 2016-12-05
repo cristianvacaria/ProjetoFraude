@@ -119,7 +119,7 @@ public class todasMarcas implements Serializable {
 		
 		String id = c.getId().toString();
 		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("/Projeto/pages/tabelaDados.jsf?id=" + id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/ProjetoFraude/pages/tabelaDados.jsf?id=" + id);
 	}
 	
     public MapModel getSimpleModel() {
